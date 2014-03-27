@@ -40,6 +40,7 @@
         <div class="gapdiv"></div>
 
         <div style="margin-bottom:20px;">
+            
             <form id="ApmNewForm" action="{{url('form-handler')}}" method="post">
                 {{ Form::token() }}
                 <input name="formtype" type="hidden" value="new"/>
