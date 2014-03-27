@@ -1,16 +1,13 @@
 <?php
 /* 
-All of the wildcard routes to send requests to filters for checks that need to run
+CHECK FOR AUTHORIZED ACCESS WHEN URI IS NOT LOGIN FROM
 */
-/*// check for authorized access
-Route::when('/', 'auth');
+/*Route::when('/', 'auth');
 Route::when('index', 'auth');
 Route::when('newform', 'auth');*/
 
-// send the form requests to the check-form filter
-
 /* 
-All of the routes for simple static page GET calls 
+ALL OF THE ROUTES FOR SIMPLE STATIC PAGE GET CALLS
 */
 Route::get('/', function()
 {
@@ -42,45 +39,28 @@ Route::get('error', function()
 });
 
 
-Route::get('newform', function()
-{
-	return View::make('newform');
-});
-
-
 /* 
-Route to handle the GET generation of an old-form from a call to the database
+SEND ALL APM FORM POSTS AND GETS TO THE FORM CONTROLLER
 */
+Route::post('form-handler', array('before' => 'csrf', 'FormController@generateform'));
+
 Route::get('form/{jobID?}', function($jobID = null)
 {
-	if ($jobID == null)
-		// throw an error message, as there cannot be an old job form without a JobID attached
-		return View::make('error');
-	else
-		// pass call to a Controller to build the correct view???
-		return View::make('oldform/'.$jobID);
-});
+	return Route::get('form/{jobID}', 'FormController@generateForm'); // pass call to a Controller to build the correct view based on JobId passed
+}
 
 
-/*
-All of the form submission handlers (CSRF checks)
-*/
+// HANDLE LOGIN REQUESTS
 Route::post('login-handler', array('before' => 'csrf', function()
 {
-	if (true) //if the username and password exist in the DB allow the site index
-	{ 
-		// set cookies for the session while the browser is open, or for 1 day
-		return Redirect::to('index');
-	}
-	else //else send back to login screen
-	{
-		return Redirect::to('login');
-	}
+	// authentication logic goes here
 }));
 
 
-Route::post('search-handler', array('before' => 'csrf',  function()
+// SEND SEARCH REQUESTS TO A SEARCH CONTROLLER
+Route::post('search-handler', array('before' => 'csrf', function()
 {
+	// search results function
 	$category = Input::get('category');
 	$input = Input::get('input');
 	
@@ -97,12 +77,4 @@ Route::post('search-handler', array('before' => 'csrf',  function()
 	{
 		return "No results were found for your search!";
 	}
-}));
-
-
-Route::post('form-handler', array('before' => 'csrf', function()
-{
-	$data = Input::all();
-	$formtype = Input::get('formtype');
-	return FormController@renderform($formtype, $data);
 }));
