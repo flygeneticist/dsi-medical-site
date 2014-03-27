@@ -39,15 +39,13 @@ Route::get('error', function()
 });
 
 
-/* 
-SEND ALL APM FORM POSTS AND GETS TO THE FORM CONTROLLER
-*/
+
+// SEND ALL APM FORM POSTS AND GETS TO THE FORM CONTROLLER
 Route::post('form-handler', array('before' => 'csrf', 'FormController@generateform'));
 
-Route::get('form/{jobID?}', function($jobID = null)
-{
-	return Route::get('form/{jobID}', 'FormController@generateForm'); // pass call to a Controller to build the correct view based on JobId passed
-});
+// pass call to a Controller to build the correct view based on JobId passed
+Route::get('form/{jobId?}', 'FormController@generateform'); 
+
 
 
 // HANDLE LOGIN REQUESTS
@@ -55,6 +53,7 @@ Route::post('login-handler', array('before' => 'csrf', function()
 {
 	// authentication logic goes here
 }));
+
 
 
 // SEND SEARCH REQUESTS TO A SEARCH CONTROLLER

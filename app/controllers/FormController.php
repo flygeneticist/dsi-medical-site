@@ -2,23 +2,23 @@
 
 class FormController extends BaseController {
 
-	public function generateForm($jobId)
+	public function generateForm($jobId = "") // set $jobId == '' for the new forms case
 	{
 		$data = Input::all();
 
-		if ($jobId == null) // NEW FORM
+		if ($jobId == "") // NEW FORM
 		{
 			// generate a new form view
-			
+			return "NEW FORM";
 		}
-		else if (Form::find($jobId)) 
+		else if ($jobId != "") //Form::find($jobId)
 		{
 			// generate an old form view based off DB data
-
+			return "OLD FORM: " .$jobId;
 		}
 		else // ERROR PAGE
 		{
-			return View::make('error');
+			throw new NotFoundHttpException;
 		}
 	}
 

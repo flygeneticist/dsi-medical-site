@@ -1,13 +1,4 @@
 <?php
-/* 
-Setup the forms filter to run before call to the forms pages
-*/
-Route::filter('form-check', function()
-{
-	//
-});
-
-
 /*
 |--------------------------------------------------------------------------
 | Application & Route Filters
