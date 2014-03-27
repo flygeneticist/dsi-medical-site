@@ -18,7 +18,7 @@ class FormController extends BaseController {
 		}
 		else // ERROR PAGE
 		{
-			throw new NotFoundHttpException;
+			return View::make('error');
 		}
 	}
 
