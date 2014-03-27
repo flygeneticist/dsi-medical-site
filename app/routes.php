@@ -47,7 +47,7 @@ Route::post('form-handler', array('before' => 'csrf', 'FormController@generatefo
 Route::get('form/{jobID?}', function($jobID = null)
 {
 	return Route::get('form/{jobID}', 'FormController@generateForm'); // pass call to a Controller to build the correct view based on JobId passed
-}
+});
 
 
 // HANDLE LOGIN REQUESTS

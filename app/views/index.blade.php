@@ -15,7 +15,7 @@
                     <center><h2>Create and Search APM Forms</h2></center>
                 </div>
                 <div class="search-form-body" style="border:0;">
-                    <a href="/newform" class="btn btn-success">New Form</a>
+                    <a href="/form/" class="btn btn-success">New Form</a>
                     <div style="float: right;">
                         <select name="category" tabindex="1" required>
                           <option value='' disabled selected style='display:none;'>Select a category</option>
