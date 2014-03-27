@@ -9,7 +9,8 @@ class FormController extends BaseController {
 		if ($jobId == "") // NEW FORM
 		{
 			// generate a new form view
-			return "NEW FORM";
+			$test = DB::select('select top 10 * from dbo.Calendar');
+			return $testl;
 		}
 		else if ($jobId != "") //Form::find($jobId)
 		{

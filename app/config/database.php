@@ -3,15 +3,9 @@
 return array(
 
 	'fetch' => PDO::FETCH_CLASS,
-	'default' => 'mysql',
+	'default' => 'ds_sqlsrv',
 
 	'connections' => array(
-
-		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
-		),
 
 		'mysql' => array(
 			'driver'    => 'mysql',
@@ -24,26 +18,25 @@ return array(
 			'prefix'    => '',
 		),
 
-		'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
-		),
-
-		'sqlsrv' => array(
+		'ds_sqlsrv' => array(
 			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
+			'host'     => 'localhost:80',
+			'database' => 'dststserver01',
+			'username' => 'drugscan_dw',
+			'password' => 'drugscan',
 			'prefix'   => '',
 		),
 
+		'my_connection' => array(
+			'driver' => 'mysql',
+			'host' => 'localhost',
+			'database' => 'webBBS',
+			'username' => 'root',
+			'password' => '',
+			'charset' => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix' => '',
+		),
 	),
 
 	'migrations' => 'migrations',
@@ -60,15 +53,6 @@ return array(
 
 	),
 
-	'my_connection' => array(
-		'driver' => 'mysql',
-		'host' => '11.32.7.3',
-		'database' => '_webBBS',
-		'username' => 'root',
-		'password' => '',
-		'charset' => 'utf8',
-		'collation' => 'utf8_unicode_ci',
-		'prefix' => '',
-	),
+	
 
 );
