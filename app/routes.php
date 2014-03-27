@@ -41,10 +41,10 @@ Route::get('error', function()
 
 
 // SEND ALL APM FORM POSTS AND GETS TO THE FORM CONTROLLER
-Route::post('form-handler', array('before' => 'csrf', 'FormController@generateform'));
+Route::post('form-handler', array('before' => 'csrf', 'FormController@submitForm'));
 
 // pass call to a Controller to build the correct view based on JobId passed
-Route::get('form/{jobId?}', 'FormController@generateform'); 
+Route::get('form/{jobId?}', 'FormController@generateForm'); 
 
 
 

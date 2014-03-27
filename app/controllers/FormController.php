@@ -31,7 +31,7 @@ class FormController extends BaseController {
 			// post to the DB as an UPDATE call
 
 		}
-		else // OLD FORM
+		else // NEW FORM
 		{
 			// post to the DB as an INSERT call
 
