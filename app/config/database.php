@@ -3,15 +3,15 @@
 return array(
 
 	'fetch' => PDO::FETCH_CLASS,
-	'default' => 'ds_sqlsrv',
+	'default' => 'mysql',
 
 	'connections' => array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'database',
-			'username'  => 'root',
+			'database'  => 'test',
+			'username'  => 'admin',
 			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',

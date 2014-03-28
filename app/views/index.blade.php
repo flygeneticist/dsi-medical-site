@@ -15,15 +15,15 @@
                     <center><h2>Create and Search APM Forms</h2></center>
                 </div>
                 <div class="search-form-body" style="border:0;">
-                    <a href="/form/" class="btn btn-success">New Form</a>
+                    <a href="form" class="btn btn-success">New Form</a>
                     <div style="float: right;">
                         <select name="category" tabindex="1" required>
                           <option value='' disabled selected style='display:none;'>Select a category</option>
-                          <option value="JobID">Job Number</option>
+                          <option value="JobNumber">Job Number</option>
                           <option value="FSR">FSR Number</option>
-                          <option value="dtCreated">Date Created</option>
-                          <option value="jobsitename">Jobsite State</option>
-                          <option value="jobsitecity">Jobsite City</option>
+                          <option value="APMTime">APM Date</option>
+                          <option value="JobsiteCity">Jobsite City</option>
+                          <option value="JobsiteState">Jobsite State</option>
                         </select>
                         <input type="search" autofocus="autofocus" name="input" tabindex="2"  placeholder="Search..." required/> 
                         <button class="btn btn-info" type="submit" tabindex="3" value="Search">Submit</button>

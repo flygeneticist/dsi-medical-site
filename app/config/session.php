@@ -16,22 +16,11 @@ return array(
 	|
 	*/
 
-	'driver' => 'file',
+	'driver' => 'database', 
 
-	/*
-	|--------------------------------------------------------------------------
-	| Session Lifetime
-	|--------------------------------------------------------------------------
-	|
-	| Here you may specify the number of minutes that you wish the session
-	| to be allowed to remain idle before it expires. If you want them
-	| to immediately expire on the browser closing, set that option.
-	|
-	*/
+	'lifetime' => 60, // Minutes idle before expiring
 
-	'lifetime' => 120,
-
-	'expire_on_close' => false,
+	'expire_on_close' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -96,7 +85,7 @@ return array(
 	|
 	*/
 
-	'cookie' => 'laravel_session',
+	'cookie' => 'apm_session',
 
 	/*
 	|--------------------------------------------------------------------------
