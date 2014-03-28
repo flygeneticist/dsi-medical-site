@@ -10,7 +10,7 @@
         <center>
         <h1 style="padding-left: 10px;">DSI Altlantic Maintainence Plant Form</h1><br/>  
         <div>
-          <form class="form-inline" accept-charset="UTF-8" name="AMPlogin" action="{{url('login-handler')}}" method="post">
+          <form class="form-inline" accept-charset="UTF-8" name="AMPlogin" action="{{url('login')}}" method="post">
             {{ Form::token() }}
             <div class="auth-form-header">
               <h2>Sign in</h2>

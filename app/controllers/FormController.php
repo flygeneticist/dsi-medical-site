@@ -19,7 +19,6 @@ class FormController extends BaseController {
 		}
 	}
 
-
 	public function submitForm()
 	{
 		$data = Input::all();

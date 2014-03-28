@@ -3,11 +3,11 @@
 return array(
 
 	'fetch' => PDO::FETCH_CLASS,
-	'default' => 'mysql',
+	'default' => 'mysql_work_dev',
 
 	'connections' => array(
 
-		'mysql' => array(
+		'mysql_home' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'test',
@@ -18,24 +18,35 @@ return array(
 			'prefix'    => '',
 		),
 
-		'ds_sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'     => 'localhost:80',
-			'database' => 'dststserver01',
-			'username' => 'drugscan_dw',
-			'password' => 'drugscan',
-			'prefix'   => '',
-		),
-
-		'my_connection' => array(
+		'mysql_work_dev' => array(
 			'driver' => 'mysql',
-			'host' => 'localhost',
-			'database' => 'webBBS',
-			'username' => 'root',
+			'host' => 'localhost:81',
+			'database' => 'test',
+			'username' => 'admin',
 			'password' => '',
 			'charset' => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix' => '',
+		),
+
+		'mysql_work_prod' => array(
+			'driver' => 'mysql',
+			'host' => 'localhost',
+			'database' => 'APM',
+			'username' => 'admin',
+			'password' => 'admin',
+			'charset' => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix' => '',
+		),
+
+		'ds_sqlsrv' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'DSTSTSERVER01',
+			'database' => '',
+			'username' => 'drugscan_dw',
+			'password' => 'drugscan',
+			'prefix'   => '',
 		),
 	),
 

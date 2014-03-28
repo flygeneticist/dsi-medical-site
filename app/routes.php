@@ -9,32 +9,19 @@ Route::get('/', function()
 	return View::make('index');
 });
 
-Route::get('login', function()
-{
-	return View::make('login');
-});
-
-Route::get('logout', function()
-{
-	return View::make('logout');
-});
-
 Route::get('error', function()
 {
 	return View::make('error');
 });
 
-// pass call to a Controller to build the correct view based on JobId passed
-Route::get('form/{jobId?}', 'FormController@generateForm'); 
-
-// SEND ALL APM FORM POSTS AND GETS TO THE FORM CONTROLLER
+// SEND ALL APM FORM REQUESTS TO FORM CONTROLLER
+Route::get('form/{jobId?}', 'FormController@generateForm'); // pass call build the correct view based on JobId
 Route::post('form-handler/{jobId?}', array('before' => 'csrf', 'uses' => 'FormController@submitForm'));
 
-// HANDLE LOGIN REQUESTS
-Route::post('login-handler', array('before' => 'csrf', function()
-{
-	// authentication logic goes here
-}));
+// HANDLE LOGIN REQUESTS WITH LOGIN CONTROLLER
+Route::get('login', array('uses' => 'LoginController@showLogin'));
+Route::post('login', array('before' => 'csrf', 'uses' => 'LoginController@doLogin'));
+Route::get('logout', array('uses' => 'LoginController@doLogout'));
 
-// SEND SEARCH REQUESTS TO A SEARCH CONTROLLER
+// SEND SEARCH REQUESTS TO SEARCH CONTROLLER
 Route::post('search-handler', array('before' => 'csrf', 'uses' => 'SearchController@grabList'));
