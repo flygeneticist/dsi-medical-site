@@ -28,7 +28,7 @@ Route::get('error', function()
 Route::get('form/{jobId?}', 'FormController@generateForm'); 
 
 // SEND ALL APM FORM POSTS AND GETS TO THE FORM CONTROLLER
-Route::post('form-handler', array('before' => 'csrf', 'FormController@submitForm'));
+Route::post('form-handler/{jobId?}', array('before' => 'csrf', 'uses' => 'FormController@submitForm'));
 
 // HANDLE LOGIN REQUESTS
 Route::post('login-handler', array('before' => 'csrf', function()
@@ -37,4 +37,4 @@ Route::post('login-handler', array('before' => 'csrf', function()
 }));
 
 // SEND SEARCH REQUESTS TO A SEARCH CONTROLLER
-Route::post('search-handler', array('before' => 'csrf', 'SearchController@grabList'));
+Route::post('search-handler', array('before' => 'csrf', 'uses' => 'SearchController@grabList'));

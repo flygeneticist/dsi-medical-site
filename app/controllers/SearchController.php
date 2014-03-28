@@ -4,17 +4,19 @@ class SearchController extends BaseController {
 
 	public function grabList()
 	{
-		// search results function
+		// grab search criteria with input::get function
 		$category = Input::get('category');
 		$input = Input::get('input');
 		
 		// pull all results from the SQL database and store to a JSON var
-		$results = null //DB::table('forms')->select('*', "CONCAT('form/', JobNumber) as OldLink")->where($category, $input);
+		$rows = DB::table('forms')->select()->where($category, $input)->get();
 		
 		// if the result is not zero (NRF) return them to the search table
-		if ($results != null) 
+		if ($rows != null) 
 		{
-			return $results;
+			foreach ($rows as $row) {
+				echo $row->title; // add <tr><td> setup!!
+			}
 		}
 		
 		return "No results were found for your search!";
