@@ -6,7 +6,8 @@
 // ALL OF THE ROUTES FOR SIMPLE STATIC PAGE GET CALLS
 Route::get('/', function() 
 {
-	return View::make('index');
+	$results = array();
+	return View::make('index', array('results' => $results));
 });
 
 Route::get('error', function()
@@ -15,7 +16,7 @@ Route::get('error', function()
 });
 
 // SEND ALL APM FORM REQUESTS TO FORM CONTROLLER
-Route::get('form/{jobId?}', 'FormController@generateForm'); // pass call build the correct view based on JobId
+Route::get('form/{jobId?}', array('uses' => 'FormController@generateForm', 'as' => 'form.show'));
 Route::post('form-handler/{jobId?}', array('before' => 'csrf', 'uses' => 'FormController@submitForm'));
 
 // HANDLE LOGIN REQUESTS WITH LOGIN CONTROLLER
@@ -24,4 +25,4 @@ Route::post('login', array('before' => 'csrf', 'uses' => 'LoginController@doLogi
 Route::get('logout', array('uses' => 'LoginController@doLogout'));
 
 // SEND SEARCH REQUESTS TO SEARCH CONTROLLER
-Route::post('search-handler', array('before' => 'csrf', 'uses' => 'SearchController@grabList'));
+Route::post('search', array('before' => 'csrf', 'uses' => 'SearchController@grabList'));

@@ -9,21 +9,8 @@ class SearchController extends BaseController {
 		$input = Input::get('input');
 		
 		// pull all results from the SQL database and store to a JSON var
-		$rows = DB::table('forms')->select()->where($category, $input)->get();
-		echo "category: ".$category;
-		echo "input: ".$input;
-		echo "rows: <br/>".$rows[0];
-		
-		/*
-		// if the result is not zero (NRF) return them to the search table
-		if ($rows != null) 
-		{
-			foreach ($rows as $row) {
-				echo $row->title; // add <tr><td> setup!!
-			}
-		}
-		
-		return "No results were found for your search!";
-		*/
+		$results = DB::table('forms')->select()->where($category, $input)->get();
+
+		return View::make('index', array('results' => $results));
 	}
 };

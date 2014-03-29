@@ -9,7 +9,7 @@
   <body>
     <div class="main-search-page" style="padding: 10px 10px 0px 10px;">
         <div class="searchBar">
-            <form id="ApmSearch" action="{{url('search-handler')}}" method="post">
+            <form id="ApmSearch" action="{{url('search')}}" method="post">
                 {{ Form::token() }}
                 <div class="search-form-header">
                     <center><h2>Create and Search APM Forms</h2></center>
@@ -41,17 +41,34 @@
                   <tr>
                      <th>JobID</th>
                      <th>FSR</th>
-                     <th>Created</th>
+                     <th>APM Date</th>
                      <th>Jobsite</th>
                      <th>City</th>
                      <th>State</th>
-                     <th>Edit</th>
+                     <th>Docs</th>
                   </tr>
                </thead>
                <tbody>
                   <!-- these are the results of the search query -->
-               </tbody>
-            </table>
+                  @if ($results != null)
+                    @foreach ($results as $row)
+                      <tr>
+                        <td> {{ $row->JobNumber }} </td>
+                        <td> {{ $row->FSR }} </td>
+                        <td> {{ $row->APMTime }} </td>
+                        <td> {{ $row->JobsiteName }} </td>
+                        <td> {{ $row->JobsiteCity }} </td>
+                        <td> {{ $row->JobsiteState }} </td> 
+                        <td> {{ link_to_route('form.show', 'Edit', ['id' => $row->JobNumber]) }} </td>
+                      </tr>
+                    @endforeach
+                      </tbody>
+                    </table>
+                  @else
+                      </tbody>
+                    </table>
+                    <p>"No results were found for your search!"<p>
+                  @endif
         </div>
     </div>
   </body>

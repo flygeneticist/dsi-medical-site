@@ -4,8 +4,6 @@ class FormController extends BaseController {
 
 	public function generateForm($jobId="") // set $jobId == '' for the new forms case
 	{
-		$jobId = Input::get('jobId');
-
 		if ($jobId == "") // NEW FORM
 		{
 			return View::make('form');
