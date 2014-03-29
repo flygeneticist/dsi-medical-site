@@ -10,7 +10,11 @@ class SearchController extends BaseController {
 		
 		// pull all results from the SQL database and store to a JSON var
 		$rows = DB::table('forms')->select()->where($category, $input)->get();
+		echo "category: ".$category;
+		echo "input: ".$input;
+		echo "rows: <br/>".$rows[0];
 		
+		/*
 		// if the result is not zero (NRF) return them to the search table
 		if ($rows != null) 
 		{
@@ -20,5 +24,6 @@ class SearchController extends BaseController {
 		}
 		
 		return "No results were found for your search!";
+		*/
 	}
 };

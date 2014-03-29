@@ -3,7 +3,7 @@
 return array(
 
 	'fetch' => PDO::FETCH_CLASS,
-	'default' => 'mysql_work_dev',
+	'default' => 'mysql_home',
 
 	'connections' => array(
 

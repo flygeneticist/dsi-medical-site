@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="bootstrap.css" />
-    <link rel="text/javascript" href="bootstrap.js" />
+    <link rel="text/javascript" href="jquery-1.11.0.min.js" />
     <title>DSI Medical Services,Inc. Drug & Alcohol Program Management Services</title>
 </head>
 <body>
