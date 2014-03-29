@@ -15,7 +15,7 @@
                     <center><h2>Create and Search APM Forms</h2></center>
                 </div>
                 <div class="search-form-body" style="border:0;">
-                    <a href="form" class="btn btn-success" tabindex="1">New Form</a>
+                    <a href={{url('form')}} class="btn btn-success" tabindex="1">New Form</a>
                     <div style="float: right;">
                         <select name="category" tabindex="2" required>
                           <option value='' disabled selected style='display:none;'>Select a category</option>
@@ -58,7 +58,7 @@
                         <td> {{ $row->JobsiteName }} </td>
                         <td> {{ $row->JobsiteCity }} </td>
                         <td> {{ $row->JobsiteState }} </td> 
-                        <td> {{ link_to_route('form.show', 'Edit', ['id' => $row->JobNumber]) }} </td>
+                        <td> {{ link_to_route('form.show', 'Edit', ['id' => $row->id]) }} </td>
                       </tr>
                     @endforeach
                       </tbody>
