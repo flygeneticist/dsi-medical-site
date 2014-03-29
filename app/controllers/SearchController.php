@@ -9,7 +9,7 @@ class SearchController extends BaseController {
 		$input = Input::get('input');
 		
 		// pull all results from the SQL database and store to a JSON var
-		$results = DB::table('forms')->select()->where($category, $input)->get();
+		$results = DB::table('forms')->select()->where($category, $input)->orderby('APMTime')->get();
 
 		return View::make('index', array('results' => $results));
 	}

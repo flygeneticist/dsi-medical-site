@@ -1,10 +1,9 @@
 <?php
+// app/models/Form.php
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
+class Form extends Eloquent {
 
-class User extends Eloquent {
-
+	public $timestamps = false;
 	protected $table = 'forms';
 
 	// Get the unique identifier for the user.

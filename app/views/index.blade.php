@@ -15,18 +15,17 @@
                     <center><h2>Create and Search APM Forms</h2></center>
                 </div>
                 <div class="search-form-body" style="border:0;">
-                    <a href="form" class="btn btn-success">New Form</a>
+                    <a href="form" class="btn btn-success" tabindex="1">New Form</a>
                     <div style="float: right;">
-                        <select name="category" tabindex="1" required>
+                        <select name="category" tabindex="2" required>
                           <option value='' disabled selected style='display:none;'>Select a category</option>
                           <option value="JobNumber">Job Number</option>
                           <option value="FSR">FSR Number</option>
-                          <option value="APMTime">APM Date</option>
                           <option value="JobsiteCity">Jobsite City</option>
                           <option value="JobsiteState">Jobsite State</option>
                         </select>
-                        <input type="search" autofocus="autofocus" name="input" tabindex="2"  placeholder="Search..." required/> 
-                        <button class="btn btn-info" type="submit" tabindex="3" value="Search">Submit</button>
+                        <input type="search" autofocus="autofocus" name="input" tabindex="3"  placeholder="Search..." required/> 
+                        <button class="btn btn-info" type="submit" tabindex="4" value="Search">Submit</button>
                     </div>
                 </div>
             </form>
@@ -36,16 +35,16 @@
 
         <!--IF result count greater than 0, show this div-->
         <div class="searchResults">
-            <table class="table table-hover table-condensed">
+            <table class="table table-hover table-condensed table-responsive">
                <thead class="table">
                   <tr>
-                     <th>JobID</th>
+                     <th>Job Number</th>
                      <th>FSR</th>
                      <th>APM Date</th>
                      <th>Jobsite</th>
                      <th>City</th>
                      <th>State</th>
-                     <th>Docs</th>
+                     <th>Link</th>
                   </tr>
                </thead>
                <tbody>
@@ -55,7 +54,7 @@
                       <tr>
                         <td> {{ $row->JobNumber }} </td>
                         <td> {{ $row->FSR }} </td>
-                        <td> {{ $row->APMTime }} </td>
+                        <td> {{ substr($row->APMTime,0,10) }} </td>
                         <td> {{ $row->JobsiteName }} </td>
                         <td> {{ $row->JobsiteCity }} </td>
                         <td> {{ $row->JobsiteState }} </td> 
