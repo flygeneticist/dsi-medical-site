@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFormsTable extends Migration {
+class CreateApmformsTable extends Migration {
 
     /**
      * Run the migrations.
@@ -11,7 +11,7 @@ class CreateFormsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('forms', function($table) {
+        Schema::create('apmforms', function($table) {
             $table->increments('id');
             $table->char('JobNumber', 15);
             $table->dateTime('APMTime')->nullable();

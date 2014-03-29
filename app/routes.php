@@ -15,9 +15,15 @@ Route::get('error', function()
 	return View::make('error');
 });
 
-// SEND ALL APM FORM REQUESTS TO FORM CONTROLLER
+
+Route::get('form', function()
+{
+	return View::make('form');
+});
+
+// SEND ALL OTHER APM FORM REQUESTS TO FORM CONTROLLER
 Route::get('form/{jobId?}', array('uses' => 'FormController@generateForm', 'as' => 'form.show'));
-Route::post('form-handler/{jobId?}', array('before' => 'csrf', 'uses' => 'FormController@submitForm'));
+Route::post('form/{jobId?}', array('before' => 'csrf', 'uses' => 'FormController@submitForm', 'as' => 'form.update'));
 
 // HANDLE LOGIN REQUESTS WITH LOGIN CONTROLLER
 Route::get('login', array('uses' => 'LoginController@showLogin'));

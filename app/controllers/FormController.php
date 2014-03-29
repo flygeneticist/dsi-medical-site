@@ -4,23 +4,16 @@ class FormController extends BaseController {
 
 	public function generateForm($jobId="") // set $jobId == '' for the new forms case
 	{
-		if ($jobId == "") // NEW FORM
-		{
-			return View::make('form');
-		}
-		else //Form::find($jobId)
-		{
-			// pull the old form data from the DB
-			$oldFormData = Form::find($jobId);
-			// generate an old form view based off DB data
-			return "OLD FORM: <br/>".$oldFormData;
-		}
+		// pull the old form data from the DB
+		$apmformdata = Apmform::findOrFail($jobId);
+		// generate an old form view based off DB data
+		return View::make('form', $apmformdata);
 	}
 
 	public function submitForm()
 	{
 		$data = Input::all();
-		$jobId = $data['JobNumber'];
+		$jobId = $data['id'];
 		
 		if ($formType == 'old') // OLD FORM
 		{

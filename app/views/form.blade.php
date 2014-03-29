@@ -40,37 +40,34 @@
         <div class="gapdiv"></div>
 
         <div style="margin-bottom:20px;">
-            
-            <form id="ApmNewForm" action="{{url('form-handler')}}" method="post">
+            {{ Form::model($apmformdata, array('method' => 'POST', 'route' => 'form.update')) }}
                 {{ Form::token() }}
-                <input name="formtype" type="hidden" value="new"/>
+                <input name="id" type="hidden" value=""/>
                 <div id="group1">
                     <div class="textborder form-group">
                         <h2>Basic Information</h2>
-                        {{ $errors->first('dateofapm', '<span class="error">:message</span>') }}<br/>
-                        <label>Date of APM:</label><input type="date" name="dateofapm" maxlength=20 required/>
-                        {{ $errors->first('contractorFirstName', '<span class="error">:message</span>') }}<br/>
-                        <label>Contractor First Name:</label><input type="text" name="contractorFirstName" size=20 required/>
-                        {{ $errors->first('contractorLastName', '<span class="error">:message</span>') }}<br/>
-                        <label>Contractor Last name:</label><input type="text" name="contractorLastName" size=20 required/>
+                        {{ $errors->first('APMTime', '<span class="error">:message</span>') }}<br/>
+                        <label>Date of APM:</label><input type="date" name="APMTime" maxlength=20 required/>
+                        {{ $errors->first('Contractor', '<span class="error">:message</span>') }}<br/>
+                        <label>Contractor Name:</label><input type="text" name='Contractor' size=50 minlength=3 maxlength=50 required/>
                         {{ $errors->first('JobID', '<span class="error">:message</span>') }}<br/>
-                        <label>Job Number (XXXXXXXXXX):</label><input type="text" name="JobID" size=10 minlength=10 maxlength=10 required/>
+                        <label>Job Number (XXXXXXXXXX):</label><input type="text" name='JobNumber' size=10 minlength=10 maxlength=10 required/>
                         {{ $errors->first('fsrponum', '<span class="error">:message</span>') }}<br/>
                         <label>FSR-PO#:</label><input type="text" name="fsrponum" size=10 maxlength=15 required/>
                         {{ $errors->first('billable', '<span class="error">:message</span>') }}<br/>
                         <label>Billable?</label><select name="billable"><option value=1>Yes</option><option value=0>No</option></select>
-                        {{ $errors->first('jobsitename', '<span class="error">:message</span>') }}<br/>
-                        <label>Jobsite Name:</label><input type="text" name="jobsitename" size=30 required/>
-                        {{ $errors->first('number', '<span class="error">:message</span>') }}<br/>
-                        <label>Number of Tests (Approximate):</label><input type="number" size=4 min=1 name="numoftests" required/>
-                        {{ $errors->first('jobsiteaddress', '<span class="error">:message</span>') }}<br/>
-                        <label>Jobsite Address:</label><input type="text" name="jobsiteaddress" size=40 required/>
-                        {{ $errors->first('jobsitecity', '<span class="error">:message</span>') }}<br/>
-                        <label>City:</label><input type="text" name="jobsitecity" size=20 required/>
-                        {{ $errors->first('jobsitestate', '<span class="error">:message</span>') }}<br/>
-                        <label>State:</label><input type="text" name="jobsitestate" size=2 minlength=2 maxlength=2 required/>
-                        {{ $errors->first('jobsitezip', '<span class="error">:message</span>') }}<br/>
-                        <label>Zip Code:</label><input type="text" name="jobsitezip" size=5 minlength=2 maxlength=5 required/>
+                        {{ $errors->first('JobsiteName', '<span class="error">:message</span>') }}<br/>
+                        <label>Jobsite Name:</label><input type="text" name='JobsiteName' size=30 required/>
+                        {{ $errors->first('NumberOfTests', '<span class="error">:message</span>') }}<br/>
+                        <label>Number of Tests (Approximate):</label><input type='NumberOfTests' size=4 min=1 name="numoftests" required/>
+                        {{ $errors->first('JobsiteAddress', '<span class="error">:message</span>') }}<br/>
+                        <label>Jobsite Address:</label><input type="text" name='JobsiteAddress' size=40 required/>
+                        {{ $errors->first('JobsiteCity', '<span class="error">:message</span>') }}<br/>
+                        <label>City:</label><input type="text" name='JobsiteCity' size=20 required/>
+                        {{ $errors->first('JobsiteState', '<span class="error">:message</span>') }}<br/>
+                        <label>State:</label><input type="text" name='JobsiteState' size=2 minlength=2 maxlength=2 required/>
+                        {{ $errors->first('JobsiteZIP', '<span class="error">:message</span>') }}<br/>
+                        <label>Zip Code:</label><input type="text" name='JobsiteZIP' size=5 minlength=2 maxlength=5 required/>
                     </div><br/>
                 </div>
 
@@ -229,7 +226,7 @@
                     <button type="submit" class="btn btn-success btn-lg" style="margin-right: 100px;">Submit</button>
                     <a href="/" class="btn btn-danger btn-lg" role="button">Cancel</a>
                 </div>
-            </form>
+            {{ Form::close() }}
         </div>
       </div>
   </body>
