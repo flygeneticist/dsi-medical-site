@@ -225,7 +225,7 @@
                         </div>
                         <div>   
                             {{ $errors->first('comments', '<span class="error">:message</span>') }}<br/>
-                            {{ Form::label('comments', 'Comments:') }}
+                            {{ Form::label('comments', 'Comments:') }}<br/>
                             {{ Form::textarea('comments') }}                        
                         </div>
                     </div>
@@ -268,7 +268,7 @@
                 </div>
 
                 <div class="article">
-                    <h3 style="color:#d9534f";><u>Note:</u> Collectors MUST bring a picture ID <br/>to all job site locations.</h3>
+                    <h3 style="color:#d9534f";><u>Note:</u> Collectors MUST bring a photo ID to all job sites!</h3>
                     <h2>All forms below are for DSI personnel ONLY!</h2>
                 </div>
 
@@ -278,9 +278,9 @@
                             <h2>Clinic Contact Information</h2>
                             <div>
                                 <h3>Assigned Service Provider</h3>
-                                {{ $errors->first(''ASPClinicName'', '<span class="error">:message</span>') }}<br/>
-                                {{ Form::label(''ASPClinicName'', 'Clinic Name:') }}
-                                {{ Form::text(''ASPClinicName'') }}   
+                                {{ $errors->first('ASPClinicName', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('ASPClinicName', 'Clinic Name:') }}
+                                {{ Form::text('ASPClinicName') }}   
                                                               
                                 {{ $errors->first('ASPClinicAddress', '<span class="error">:message</span>') }}<br/>
                                 {{ Form::label('ASPClinicAddress', 'Clinic Address:') }}
@@ -313,9 +313,9 @@
                             </div>
                             <div>
                                 <h3>Alternate Health Clinic (injuries randoms)</h3>
-                                {{ $errors->first(''OccClinicName'', '<span class="error">:message</span>') }}<br/>
-                                {{ Form::label(''OccClinicName'', 'Clinic Name:') }}
-                                {{ Form::text(''OccClinicName'') }}   
+                                {{ $errors->first('OccClinicName', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('OccClinicName', 'Clinic Name:') }}
+                                {{ Form::text('OccClinicName') }}   
                                                               
                                 {{ $errors->first('OccClinicAddress', '<span class="error">:message</span>') }}<br/>
                                 {{ Form::label('OccClinicAddress', 'Clinic Address:') }}
