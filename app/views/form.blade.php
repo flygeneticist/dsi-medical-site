@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="bootstrap.css" />
     <link rel="text/javascript" href="jquery-1.11.0.min.js" />
+    {{ HTML::style('bootstrap.css') }}
     <title>DSI Medical Services,Inc. Drug & Alcohol Program Management Services</title>
-</head>
+    </head>
 <body>
     <center><h1>DSI Altlantic Maintainence Plant Form<h1></center>
     <div class="main-form-page" style="padding-left: 10px; padding-right: 10px;">
@@ -40,34 +40,57 @@
         <div class="gapdiv"></div>
 
         <div style="margin-bottom:20px;">
-            {{ Form::model($apmformdata, array('method' => 'POST', 'route' => 'form.update')) }}
+            {{ Form::model($apmformdata, array('method' => 'POST', 'route' => array('form.update', $apmformdata -> id))) }}
                 {{ Form::token() }}
                 <input name="id" type="hidden" value=""/>
                 <div id="group1">
                     <div class="textborder form-group">
                         <h2>Basic Information</h2>
+                        
                         {{ $errors->first('APMTime', '<span class="error">:message</span>') }}<br/>
-                        <label>Date of APM:</label><input type="date" name="APMTime" maxlength=20 required/>
+                        {{ Form::label('APMTime', 'Date of APM:') }}
+                        {{ Form::text('APMTime') }}
+                        
                         {{ $errors->first('Contractor', '<span class="error">:message</span>') }}<br/>
-                        <label>Contractor Name:</label><input type="text" name='Contractor' size=50 minlength=3 maxlength=50 required/>
-                        {{ $errors->first('JobID', '<span class="error">:message</span>') }}<br/>
-                        <label>Job Number (XXXXXXXXXX):</label><input type="text" name='JobNumber' size=10 minlength=10 maxlength=10 required/>
-                        {{ $errors->first('fsrponum', '<span class="error">:message</span>') }}<br/>
-                        <label>FSR-PO#:</label><input type="text" name="fsrponum" size=10 maxlength=15 required/>
-                        {{ $errors->first('billable', '<span class="error">:message</span>') }}<br/>
-                        <label>Billable?</label><select name="billable"><option value=1>Yes</option><option value=0>No</option></select>
+                        {{ Form::label('Contractor', 'Contractor name:') }}
+                        {{ Form::text('Contractor') }}
+
+
+                        {{ $errors->first('JobNumber', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('JobNumber', 'Job Number (10-digits)') }}
+                        {{ Form::text('JobNumber') }}
+
+                        {{ $errors->first('FSR', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('FSR', 'FSR-PO#:') }}
+                        {{ Form::text('FSR') }}
+
+                        {{ $errors->first('Billable', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('Billable', 'Billable?') }}
+                        <?php echo Form::select('Billable', array('1' => 'Yes', '0' => 'No')); ?>
+
                         {{ $errors->first('JobsiteName', '<span class="error">:message</span>') }}<br/>
-                        <label>Jobsite Name:</label><input type="text" name='JobsiteName' size=30 required/>
+                        {{ Form::label('JobsiteName', 'Jobsite Name:') }}
+                        {{ Form::text('JobsiteName') }}
+
                         {{ $errors->first('NumberOfTests', '<span class="error">:message</span>') }}<br/>
-                        <label>Number of Tests (Approximate):</label><input type='NumberOfTests' size=4 min=1 name="numoftests" required/>
+                        {{ Form::label('NumberOfTests', 'Number of Tests (Approximate):') }}
+                        {{ Form::text('NumberOfTests') }}
+
                         {{ $errors->first('JobsiteAddress', '<span class="error">:message</span>') }}<br/>
-                        <label>Jobsite Address:</label><input type="text" name='JobsiteAddress' size=40 required/>
+                        {{ Form::label('JobsiteAddress', 'Jobsite Address:') }}
+                        {{ Form::text('JobsiteAddress') }}
+
                         {{ $errors->first('JobsiteCity', '<span class="error">:message</span>') }}<br/>
-                        <label>City:</label><input type="text" name='JobsiteCity' size=20 required/>
+                        {{ Form::label('JobsiteCity', 'City:') }}
+                        {{ Form::text('JobsiteCity') }}
+
                         {{ $errors->first('JobsiteState', '<span class="error">:message</span>') }}<br/>
-                        <label>State:</label><input type="text" name='JobsiteState' size=2 minlength=2 maxlength=2 required/>
+                        {{ Form::label('JobsiteState', 'State:') }}
+                        {{ Form::text('JobsiteState') }}
+
                         {{ $errors->first('JobsiteZIP', '<span class="error">:message</span>') }}<br/>
-                        <label>Zip Code:</label><input type="text" name='JobsiteZIP' size=5 minlength=2 maxlength=5 required/>
+                        {{ Form::label('JobsiteZIP', 'Zip Code:') }}
+                        {{ Form::text('JobsiteZIP') }}
                     </div><br/>
                 </div>
 
@@ -79,23 +102,17 @@
                         <div class="contact">  
                             <strong>On-Site Contact (Dayshift)</strong><br/>
                             <label>First Name:</label><input type="text" name="DayContactFirstName"/><br/>
-                            <label>Last Name:</label><input type="text" name="DayContactLastName"/><br/>
                             <label>Cell Phone:</label><input type="tel" name="DayContactPhone"/><br/>
-                            <label>Email Address:</label><input type="email" name="DayContactEmail"/><br/>
                         </div>
                         <div class="contact">
                             <strong>On-Site Contact (Nightshift)</strong><br/>
                             <label>First Name:</label><input type="text" name="NightContactFirstName"/><br/>
-                            <label>Last Name:</label><input type="text" name="NightContactLastName"/><br/>
                             <label>Cell Phone:</label><input type="text" name="NightContactPhone"/><br/>
-                            <label>Email Address:</label><input type="email" name="NightContactEmail"/><br/>
                         </div>
                         <div style="clear:both;">
                             <strong>GE Contact</strong><br/>
                             <label>First Name:</label><input type="text" name="GEFirstName"/><br/>
-                            <label>Last Name:</label><input type="text" name="GELastName"/><br/>
                             <label>Cell Phone:</label><input type="tel" name="GEPhone"/><br/>
-                            <label>Email Address:</label><input type="email" name="GEemail"/><br/>
                         </div>
                     </div>
                 </div>
@@ -106,8 +123,8 @@
                     <div class="textborder form-group">
                         <h2>Gate Security Information</h2>
                         <p><strong>APM notification to Gate Security for Collectors Arrival</strong></p>
-                        <label>Date of notification(MM/DD/YY):</label><input type="date" name="SecurityNotifyDate"/><br/>
-                        <label>Security contact Name:</label><input type="text" name="SecurityName"/><br/>
+                        <label>Date of Notification(MM/DD/YY):</label><input type="date" name="SecurityNotifyDate"/><br/>
+                        <label>Security Contact Name:</label><input type="text" name="SecurityName"/><br/>
                         <label>Type Of Testing:</label><select name="typeoftesting"><option value="preEmp">Pre Employment</option><option value="random">Random</option><option value="other">Other</option></select><br/>
                     </div>
                 </div>
@@ -213,7 +230,6 @@
                             <label>Allowance:</label><input type="number" name="CollectorAllowance"/><br/>
                             <label>Completed By DSI:</label><input type="date" name="CompletedByDSI"/><br/>
                             <label>Confirmed with APM on (mm/dd/yy):</label><input type="date" name="ConfirmedAPM"/><br/>
-                            <label>E-mail (mm/dd/yy):</label><input type="date" name="ConfirmedEmail"/><br/>
                             <label>Fax (mm/dd/yy):</label><input type="date" name="ConfirmedFax"/><br/>
                         </div>    
                     </div>
@@ -221,8 +237,6 @@
 
                 <div class="form-group">
                     <h3 style="color:#428bca;">Please double check all data before submitting it!</h3>
-                    <label>By checking this box, I herby certify that the above <br/>
-                    information is correct to the best of my knowledge:&nbsp;&nbsp;</label><input type="checkbox" value="false" required/><br/><br/>
                     <button type="submit" class="btn btn-success btn-lg" style="margin-right: 100px;">Submit</button>
                     <a href="/" class="btn btn-danger btn-lg" role="button">Cancel</a>
                 </div>

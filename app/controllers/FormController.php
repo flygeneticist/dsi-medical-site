@@ -4,24 +4,33 @@ class FormController extends BaseController {
 
 	public function generateForm($jobId="") // set $jobId == '' for the new forms case
 	{
-		// pull the old form data from the DB
-		$apmformdata = Apmform::findOrFail($jobId);
-		// generate an old form view based off DB data
-		return View::make('form', $apmformdata);
+		if ($jobId == "")
+		{
+			// create an empty APM Form to pass in
+			$apmformdata = new Apmform;
+		}
+		else
+		{
+			// pull the old form data from the DB
+			$apmformdata = Apmform::find($jobId);
+		}
+
+		// render the page with the correct data passed in
+		return View::make('form')
+			->with('apmformdata', $apmformdata);
 	}
 
 	public function submitForm()
 	{
 		$data = Input::all();
-		$jobId = $data['id'];
-		
+		$jobId = $data['JobNumber'];
+
 		if ($formType == 'old') // OLD FORM
 		{
 			// post to the DB as an UPDATE call
 			//DB::table('forms')->where(JobNumber, $jobId)->update($data);
 			//Form::where('JobNumber', '=', $data['JobNumber'])
 			//	->update(array('field' => 'value')); // add the form data fields!!
-			return "Your OLD form <h3>".$jobId."</h3> has been submitted!";
 		}
 		else // NEW FORM
 		{
@@ -29,7 +38,8 @@ class FormController extends BaseController {
 			//Form::new()
 			//Form::save()
 			//DB::table('forms')->insert($data);
-			return "Your NEW form <h3>".$jobId."</h3> has been submitted!";
 		}
+
+		return "<h3>The APM Form ".$jobId." has been submitted!</h3>";
 	}
 };

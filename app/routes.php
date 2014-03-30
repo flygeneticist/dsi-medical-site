@@ -15,12 +15,6 @@ Route::get('error', function()
 	return View::make('error');
 });
 
-
-Route::get('form', function()
-{
-	return View::make('form');
-});
-
 // SEND ALL OTHER APM FORM REQUESTS TO FORM CONTROLLER
 Route::get('form/{jobId?}', array('uses' => 'FormController@generateForm', 'as' => 'form.show'));
 Route::post('form/{jobId?}', array('before' => 'csrf', 'uses' => 'FormController@submitForm', 'as' => 'form.update'));
