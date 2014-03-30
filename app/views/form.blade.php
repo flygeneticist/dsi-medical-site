@@ -48,7 +48,7 @@
                         <h2>Basic Information</h2>
                         
                         {{ $errors->first('APMTime', '<span class="error">:message</span>') }}<br/>
-                        {{ Form::label('APMTime', 'Date of APM:') }}
+                        {{ Form::label('APMTime', 'Date of APM (MM/DD/YYYY):') }}
                         {{ Form::text('APMTime') }}
                         
                         {{ $errors->first('Contractor', '<span class="error">:message</span>') }}<br/>
@@ -101,18 +101,33 @@
                         <h2>On-Site and GE Contact Information</h2>
                         <div class="contact">  
                             <strong>On-Site Contact (Dayshift)</strong><br/>
-                            <label>First Name:</label><input type="text" name="DayContactFirstName"/><br/>
-                            <label>Cell Phone:</label><input type="tel" name="DayContactPhone"/><br/>
+                            {{ $errors->first('ContactDayShift', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('ContactDayShift', 'Name:') }}
+                            {{ Form::text('ContactDayShift') }}
+
+                            {{ $errors->first('ContactDayShiftCell', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('ContactDayShiftCell', 'Cell phone:') }}
+                            {{ Form::text('ContactDayShiftCell') }}
                         </div>
                         <div class="contact">
                             <strong>On-Site Contact (Nightshift)</strong><br/>
-                            <label>First Name:</label><input type="text" name="NightContactFirstName"/><br/>
-                            <label>Cell Phone:</label><input type="text" name="NightContactPhone"/><br/>
+                            {{ $errors->first('ContactNightShift', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('ContactNightShift', 'Name:') }}
+                            {{ Form::text('ContactNightShift') }}
+
+                            {{ $errors->first('ContactNightShiftCell', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('ContactNightShiftCell', 'Cell phone:') }}
+                            {{ Form::text('ContactNightShiftCell') }}
                         </div>
                         <div style="clear:both;">
                             <strong>GE Contact</strong><br/>
-                            <label>First Name:</label><input type="text" name="GEFirstName"/><br/>
-                            <label>Cell Phone:</label><input type="tel" name="GEPhone"/><br/>
+                            {{ $errors->first('GEContact', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('GEContact', 'Name:') }}
+                            {{ Form::text('GEContact') }}
+
+                            {{ $errors->first('GECell', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('GECell', 'Cell phone:') }}
+                            {{ Form::text('GECell') }}
                         </div>
                     </div>
                 </div>
@@ -122,10 +137,18 @@
                 <div id="group3" style="clear:both;">
                     <div class="textborder form-group">
                         <h2>Gate Security Information</h2>
-                        <p><strong>APM notification to Gate Security for Collectors Arrival</strong></p>
-                        <label>Date of Notification(MM/DD/YY):</label><input type="date" name="SecurityNotifyDate"/><br/>
-                        <label>Security Contact Name:</label><input type="text" name="SecurityName"/><br/>
-                        <label>Type Of Testing:</label><select name="typeoftesting"><option value="preEmp">Pre Employment</option><option value="random">Random</option><option value="other">Other</option></select><br/>
+                        <strong>APM notification to Gate Security for Collectors Arrival</strong>
+                        {{ $errors->first('Dateofnotification', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('Dateofnotification', 'Date of Notification (MM/DD/YYYY):') }}
+                        {{ Form::text('Dateofnotification') }}
+
+                        {{ $errors->first('SecurityContact', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('SecurityContact', 'Security Contact Name:') }}
+                        {{ Form::text('SecurityContact') }}
+
+                        {{ $errors->first('TestType', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('TestType', 'Type Of Testing:') }}
+                        <?php echo Form::select('TestType', array('preEmp'=>'Pre Employment', "random"=>'Random', 'other'=>'Other')); ?>
                     </div>
                 </div>
 
@@ -135,30 +158,75 @@
                     <div class="textborder form-group">
                         <div>
                             <h2>Testing Schedule</h2>
-                            <label><strong>Primary Test Date:  </strong></label><input type="date" name="primarytestdate"/><br/>
-                            <strong>Day Shift:  </strong><br/>
-                            <label>Start Date/Time(MM/DD/YY hh:mm):</label><input type="datetime-local" name="TstDtPrimaryDS_StartDate"/><br/>
-                            <label>Finish Date/Time:</label><input type="datetime-local" name="TstDtPrimaryDS_FinishDate"/><br/>
-                            <label>Additional Collectors Required?</label><select name="TstDtPrimaryDS__addColl"><option value=1>Yes</option><option value=0>No</option></select><br/>
-                            <strong>Night Shift:  </strong><br/>
-                            <label>Start Date/Time:</label><input type="datetime-local" name="TstDtPrimaryNS_StartDate"/><br/>
-                            <label>Finish Date/Time:</label><input type="datetime-local" name="TstDtPrimaryNS_FinishDate"/><br/>
-                            <label>Additional Collectors Required?</label><select name="TstDtPrimaryNS_addColl"><option value=1>Yes</option><option value=0>No</option></select><br/>
-                        </div>
+                        
+                            <h3>Primary Test Date</h3>
+                            {{ $errors->first('DatePrimeDay', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('DatePrimeDay', 'Primary Test Date:') }}<br/>
+                            {{ Form::text('DatePrimeDay') }}
+
+                            <h4>Day Shift:</h4>
+                            {{ $errors->first('TimePrimeDay', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('TimePrimeDay', 'Start Time (hh:mm AM/PM):') }}
+                            {{ Form::text('TimePrimeDay') }}
+
+                            {{ $errors->first('TimeEndPrimeDay', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('TimeEndPrimeDay', 'Finish Time (hh:mm AM/PM):') }}
+                            {{ Form::text('TimeEndPrimeDay') }}
+
+                            {{ $errors->first('AdditionalPrimeDay', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('AdditionalPrimeDay', 'Additional Collectors Required?') }}
+                            <?php echo Form::select('AdditionalPrimeDay', array('1' => 'Yes', '0' => 'No')); ?>
+                            
+                            <h4>Night Shift:</h4>
+                            {{ $errors->first('TimePrimeNight', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('TimePrimeNight', 'Start Time (hh:mm AM/PM):') }}
+                            {{ Form::text('TimePrimeNight') }}
+
+                            {{ $errors->first('TimeEndPrimeNight', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('TimeEndPrimeNight', 'Finish Time (hh:mm AM/PM):') }}
+                            {{ Form::text('TimeEndPrimeNight') }}
+
+                            {{ $errors->first('AdditionalPrimeNight', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('AdditionalPrimeNight', 'Additional Collectors Required?') }}
+                            <?php echo Form::select('AdditionalPrimeNight', array('1' => 'Yes', '0' => 'No')); ?>                        </div>
+                        
                         <div>
-                            <label><strong>Additional Test Date:  </strong></label><input type="date" name="primarytestdate"/><br/>
-                            <strong>Day Shift:  </strong><br/>
-                            <label>Start Date/Time:</label><input type="datetime-local" name="TstDtAdditionalDS_StartDate"/><br/>
-                            <label>Finish Date/Time: </label><input type="datetime-local" name="TstDtAdditionalDS_FinishDate"/><br/>
-                            <label>Additional Collectors Required?</label><select name="TstDtAdditionalDS_addColl"><option value=1>Yes</option><option value=0>No</option></select><br/>
-                            <strong>Night Shift:  </strong><br/>
-                            <label>Start Date/Time:</label><input type="datetime-local" name="TstDtAdditionalNS_StartDate"/><br/>
-                            <label>Finish Date/Time:</label><input type="datetime-local" name="TstDtAdditionalNS_FinishDate"/><br/>
-                            <label>Additional Collectors Required?</label><select name="TstDtAdditionalNS_addColl"><option value=1>Yes</option><option value=0>No</option></select><br/>
+                            <h3>Additional Test Date</h3>
+                            {{ $errors->first('DateAddDay', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('DateAddDay', 'Additional Test Date:') }}<br/>
+                            {{ Form::text('DateAddDay') }}
+
+                            <h4>Day Shift:</h4>
+                            {{ $errors->first('TimeAddDay', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('TimeAddDay', 'Start Time (hh:mm AM/PM):') }}
+                            {{ Form::text('TimeAddDay') }}
+
+                            {{ $errors->first('TimeEndAddDay', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('TimeEndAddDay', 'Finish Time (hh:mm AM/PM):') }}
+                            {{ Form::text('TimeEndAddDay') }}
+
+                            {{ $errors->first('AdditionalAddDay', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('AdditionalAddDay', 'Additional Collectors Required?') }}
+                            <?php echo Form::select('AdditionalAddDay', array('1' => 'Yes', '0' => 'No')); ?>
+                            
+                            <h4>Night Shift:</h4>
+                            {{ $errors->first('TimeAddNight', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('TimeAddNight', 'Start Time (hh:mm AM/PM):') }}
+                            {{ Form::text('TimeAddNight') }}
+
+                            {{ $errors->first('TimeEndAddNight', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('TimeEndAddNight', 'Finish Time (hh:mm AM/PM):') }}
+                            {{ Form::text('TimeEndAddNight') }}
+
+                            
+                            {{ $errors->first('AdditionalAddNight', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('AdditionalAddNight', 'Additional Collectors Required?') }}
+                            <?php echo Form::select('AdditionalAddNight', array('1' => 'Yes', '0' => 'No')); ?>
                         </div>
-                        <div>
-                            <label><strong>Comments:  </strong></label><br/>
-                            <textarea name="comments" rows="3" cols="100" style="margin: 2px 0px; width: 300px; height: 50px;">Please enter any special instructions or comments here...</textarea><br/>
+                        <div>   
+                            {{ $errors->first('comments', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('comments', 'Comments:') }}
+                            {{ Form::textarea('comments') }}                        
                         </div>
                     </div>
                 </div>
@@ -169,13 +237,33 @@
                     <div class="textborder form-group">
                         <h2>Worksite Amenities</h2>
                         <h3>Does the worksite have the following?</h3>
-                        <label>Safe confidential / private work area with a table:</label><select name="workArea"><option value=1>Yes</option><option value=0>No</option></select><br/>
-                        <label>Work Trailer:</label><select name="workTrailer"><option value=1>Yes</option><option value=0>No</option></select><br/>
-                        <label>Bathroom:</label><select name="bathroom"><option value=1>Yes</option><option value=0>No</option></select><br/>
-                        <label>Port-a-john:</label><select name="PortPot"><option value=1>Yes</option><option value=0>No</option></select><br/>
-                        <label>How far, in feet, is the Collector's Work <br/>Area from the bathroom / Port-a-john?</label><input name="DistToRestroom" type="text" /><br/>
-                        <label>Running water for washing hands:</label><select name="runningWater"><option value=1>Yes</option><option value=0>No</option></select><br/>
-                        <label>Drinking Water:</label><select name="drinkingWater"><option value=1>Yes</option><option value=0>No</option></select><br/>
+                        {{ $errors->first('SafeArea', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('SafeArea', 'Safe confidential / private work area with a table:') }}
+                        <?php echo Form::select('SafeArea', array('1' => 'Yes', '0' => 'No')); ?>
+                        
+                        {{ $errors->first('Worktrailer', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('Worktrailer', 'Work Trailer:') }}
+                        <?php echo Form::select('Worktrailer', array('1' => 'Yes', '0' => 'No')); ?>
+                        
+                        {{ $errors->first('Bathroom', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('Bathroom', 'Bathroom:') }}
+                        <?php echo Form::select('Bathroom', array('1' => 'Yes', '0' => 'No')); ?>
+                        
+                        {{ $errors->first('PortalJohn', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('PortalJohn', 'Port-a-john:') }}
+                        <?php echo Form::select('PortalJohn', array('1' => 'Yes', '0' => 'No')); ?>
+                        
+                        {{ $errors->first('BathFeet', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('BathFeet', "How far, in feet, is the Collector's Work Area from the bathroom / Port-a-john?") }}
+                        {{ Form::text('BathFeet') }}   
+
+                        {{ $errors->first('RunningWater', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('RunningWater', 'Running water for washing hands:') }}
+                        <?php echo Form::select('RunningWater', array('1' => 'Yes', '0' => 'No')); ?>
+                        
+                        {{ $errors->first('DrinkingWater', '<span class="error">:message</span>') }}<br/>
+                        {{ Form::label('DrinkingWater', 'Drinking Water:') }}
+                        <?php echo Form::select('DrinkingWater', array('1' => 'Yes', '0' => 'No')); ?>
                     </div>
                 </div>
 
@@ -190,29 +278,73 @@
                             <h2>Clinic Contact Information</h2>
                             <div>
                                 <h3>Assigned Service Provider</h3>
-                                <label>Clinic Name:</label><input type="text" name="Clinic1Name"/><br/>
-                                <label>Clinic Address:</label><input type="text" name="Clinic1Address1"/><br/>
-                                <label>City:</label><input type="text" name="Clinic1City"/><br/>
-                                <label>State:</label><input type="text" name="Clinic1State"/><br/>
-                                <label>Zip Code:</label><input type="text" name="Clinic1ZipCode"/><br/>
-                                <strong>Contact Person:  </strong><br/>
-                                <label>First Name:</label><input type="text" name="ClinicalContact1FirstName"/><br/>
-                                <label>Last Name:</label><input type="text" name="ClinicalContact1LastName"/><br/>
-                                <label>Phone #:</label><input type="tel" name="ClinicalContact1Phone"/><br/>
-                                <label>Fax #:</label><input type="tel" name="ClinicalContact1Fax"/><br/>
+                                {{ $errors->first(''ASPClinicName'', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label(''ASPClinicName'', 'Clinic Name:') }}
+                                {{ Form::text(''ASPClinicName'') }}   
+                                                              
+                                {{ $errors->first('ASPClinicAddress', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('ASPClinicAddress', 'Clinic Address:') }}
+                                {{ Form::text('ASPClinicAddress') }}   
+                                                                
+                                {{ $errors->first('ASPClinicCity', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('ASPClinicCity', 'City:') }}
+                                {{ Form::text('ASPClinicCity') }}   
+                                
+                                {{ $errors->first('ASPClinicState', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('ASPClinicState', 'State:') }}
+                                {{ Form::text('ASPClinicState') }} 
+                                  
+                                {{ $errors->first('ASPClinicZIP', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('ASPClinicZIP', 'Zip code:') }}
+                                {{ Form::text('ASPClinicZIP') }} 
+                                
+                                <strong>Contact Person:</strong><br/>
+                                {{ $errors->first('ASPClinicContact', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('ASPClinicContact', 'Name:') }}
+                                {{ Form::text('ASPClinicContact') }} 
+                                
+                                {{ $errors->first('ASPClinicPhone', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('ASPClinicPhone', 'Phone number:') }}
+                                {{ Form::text('ASPClinicPhone') }} 
+                                
+                                {{ $errors->first('ASPClinicFax', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('ASPClinicFax', 'Fax Number:') }}
+                                {{ Form::text('ASPClinicFax') }} 
                             </div>
                             <div>
                                 <h3>Alternate Health Clinic (injuries randoms)</h3>
-                                <label>Clinic Name:</label><input type="text" name="Clinic2Name"/><br/>
-                                <label>Clinic Address:</label><input type="text" name="Clinic2Address1"/><br/>
-                                <label>City:</label><input type="text" name="Clinic2City"/><br/>
-                                <label>State:</label><input type="text" name="Clinic2State"/><br/>
-                                <label>Zip Code:</label><input type="text" name="Clinic2ZipCode"/><br/>
-                                <strong>Contact Person:  </strong><br/>
-                                <label>First Name:</label><input type="text" name="ClinicalContact2FirstName"/><br/>
-                                <label>Last Name:</label><input type="text" name="ClinicalContact2LastName"/><br/>
-                                <label>Phone #:</label><input type="tel" name="ClinicalContact2Phone"/><br/>
-                                <label>Fax #:</label><input type="tel" name="ClinicalContact2Fax"/><br/>
+                                {{ $errors->first(''OccClinicName'', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label(''OccClinicName'', 'Clinic Name:') }}
+                                {{ Form::text(''OccClinicName'') }}   
+                                                              
+                                {{ $errors->first('OccClinicAddress', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('OccClinicAddress', 'Clinic Address:') }}
+                                {{ Form::text('OccClinicAddress') }}   
+                                                                
+                                {{ $errors->first('OccClinicCity', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('OccClinicCity', 'City:') }}
+                                {{ Form::text('OccClinicCity') }}   
+                                
+                                {{ $errors->first('OccClinicState', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('OccClinicState', 'State:') }}
+                                {{ Form::text('OccClinicState') }} 
+                                  
+                                {{ $errors->first('OccClinicZIP', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('OccClinicZIP', 'Zip code:') }}
+                                {{ Form::text('OccClinicZIP') }} 
+                                
+                                <strong>Contact Person:</strong><br/>
+                                {{ $errors->first('OccClinicContact', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('OccClinicContact', 'Name:') }}
+                                {{ Form::text('OccClinicContact') }} 
+                                
+                                {{ $errors->first('OccClinicPhone', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('OccClinicPhone', 'Phone number:') }}
+                                {{ Form::text('OccClinicPhone') }} 
+                                
+                                {{ $errors->first('OccClinicFax', '<span class="error">:message</span>') }}<br/>
+                                {{ Form::label('OccClinicFax', 'Fax Number:') }}
+                                {{ Form::text('OccClinicFax') }} 
                             </div>
                         </div>
                     </div>
@@ -222,15 +354,46 @@
                     <div class="dsionly" id="group7" style="clear:both;">
                         <div class="textborder form-group">
                             <h2>Collector Information</h2>
-                            <label>Collectors Name:</label><input type="text" name="CollectorName"/><br/>
-                            <label>Collectors Phone #:</label><input type="tel" name="CollectorPhone"/><br/>
-                            <label>Cell Phone #:</label><input type="tel" name="CollectorCell"/><br/>
-                            <label>Special Offset Cost:</label><input type="text" name="CollectorCostOffset"/><br/>
-                            <label>Mileage:</label><input type="text" name="CollectorMilage"/><br/>
-                            <label>Allowance:</label><input type="number" name="CollectorAllowance"/><br/>
-                            <label>Completed By DSI:</label><input type="date" name="CompletedByDSI"/><br/>
-                            <label>Confirmed with APM on (mm/dd/yy):</label><input type="date" name="ConfirmedAPM"/><br/>
-                            <label>Fax (mm/dd/yy):</label><input type="date" name="ConfirmedFax"/><br/>
+                            {{ $errors->first('Collectors', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('Collectors', 'Name:') }}
+                            {{ Form::text('Collectors') }}
+                            
+                            {{ $errors->first('CollectorsPhone', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('CollectorsPhone', 'Phone Number:') }}
+                            {{ Form::text('CollectorsPhone') }}
+                            
+                            {{ $errors->first('CollectorsCell', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('CollectorsCell', 'Cell Number:') }}
+                            {{ Form::text('CollectorsCell') }}
+                            
+                            {{ $errors->first('Cost', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('Cost', 'Special Offset Cost:') }}
+                            {{ Form::text('Cost') }}
+                            
+                            {{ $errors->first('Mileage', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('Mileage', 'Mileage:') }}
+                            {{ Form::text('Mileage') }}
+                            
+                            {{ $errors->first('Allowance', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('Allowance', 'Allowance:') }}
+                            {{ Form::text('Allowance') }}
+                            
+                            {{ $errors->first('CompletedBy', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('CompletedBy', 'Completed By DSI:') }}
+                            {{ Form::text('CompletedBy') }}
+                            
+                            {{ $errors->first('ConfirmedDate', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('ConfirmedDate', 'Confirmed with APM on (MM/DD/YYYY):') }}
+                            {{ Form::text('ConfirmedDate') }}
+                            
+                            {{ $errors->first('ConfirmedFaxDate', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('ConfirmedFaxDate', 'Faxed on (MM/DD/YYYY):') }}
+                            {{ Form::text('ConfirmedFaxDate') }}
+
+                            {{ $errors->first('ConfirmedEmailDate', '<span class="error">:message</span>') }}<br/>
+                            {{ Form::label('ConfirmedEmailDate', 'Emailed on (MM/DD/YYYY):') }}
+                            {{ Form::text('ConfirmedEmailDate') }}                            
+                            
                         </div>    
                     </div>
                 </div>
