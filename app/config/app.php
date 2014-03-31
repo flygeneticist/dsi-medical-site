@@ -26,7 +26,10 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	// home url for localhost
+	//'url' => 'http://localhost',
+	// work url for localhost
+	'url' => 'http://localhost:81',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -108,7 +111,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Raahul\LarryFour\LarryFourServiceProvider'
-
+		
 	),
 
 	/*

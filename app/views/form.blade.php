@@ -57,7 +57,16 @@
                         
                         <!--NOT EDITABLE FOR USERS AFTER INITIALLY SET! ON CHANGE, CHECK IF JOB NUMBER IS NOT A DUPLICATE! -->
                         {{ Form::label('JobNumber', 'Job Number (10-digits)') }}
-                        {{ Form::text('JobNumber') }}
+                        <?php 
+                            if ($id != "" || $id != null)
+                            {
+                                {{ Form::text('JobNumber', array('disabled')) }}
+                            }
+                            else 
+                            {
+                                {{ Form::text('JobNumber') }}
+                            }
+                        ?>
                         {{ $errors->first('JobNumber', '<span class="error">:message</span>') }}<br/>
                         
                         {{ Form::label('FSR', 'FSR-PO#:') }}

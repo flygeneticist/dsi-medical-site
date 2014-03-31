@@ -3,7 +3,7 @@
 return array(
 
 	'fetch' => PDO::FETCH_CLASS,
-	'default' => 'mysql_home',
+	'default' => 'mysql_work_prod',
 
 	'connections' => array(
 
@@ -32,21 +32,12 @@ return array(
 		'mysql_work_prod' => array(
 			'driver' => 'mysql',
 			'host' => 'localhost',
-			'database' => 'APM',
-			'username' => 'admin',
-			'password' => 'admin',
+			'database' => 'dsimedic_APM',
+			'username' => 'dsimedic_admin1',
+			'password' => 'ZF?7CzC5$H2$',
 			'charset' => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix' => '',
-		),
-
-		'ds_sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'     => 'DSTSTSERVER01',
-			'database' => '',
-			'username' => 'drugscan_dw',
-			'password' => 'drugscan',
-			'prefix'   => '',
 		),
 	),
 

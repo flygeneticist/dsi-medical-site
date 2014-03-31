@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'flygeneticist@gmail.com', 'name' => 'Kevin K'),
+	'from' => array('address' => 'kevin.keller@drugscan.com', 'name' => 'Kevin Keller'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'flygeneticist',
+	'username' => 'kkeller',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'k9e8l7l!',
+	'password' => 'Skeeter0',
 
 	/*
 	|--------------------------------------------------------------------------
