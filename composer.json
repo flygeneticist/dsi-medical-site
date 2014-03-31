@@ -5,8 +5,8 @@
 	"license": "MIT",
 	
 	"require-dev": {
-    "way/generators": "2.*",
-    "raahul/larryfour": "1.*"
+    	"way/generators": "1.*",
+    	"raahul/larryfour": "1.*"
 	},
 
 	"require": {
