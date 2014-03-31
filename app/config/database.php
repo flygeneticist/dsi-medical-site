@@ -31,7 +31,7 @@ return array(
 
 		'mysql_work_prod' => array(
 			'driver' => 'mysql',
-			'host' => 'localhost',
+			'host' => 'http://dsimed.com',
 			'database' => 'dsimedic_APM',
 			'username' => 'dsimedic_admin1',
 			'password' => 'ZF?7CzC5$H2$',

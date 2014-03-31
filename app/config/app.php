@@ -28,9 +28,8 @@ return array(
 
 	// home url for localhost
 	//'url' => 'http://localhost',
-	// work url for localhost
-	'url' => 'http://localhost:81',
-
+	//'url' => 'http://localhost:81', // work
+	'url' => 'http://dsimed.com',
 	/*
 	|--------------------------------------------------------------------------
 	| Application Timezone
@@ -68,7 +67,7 @@ return array(
 	|
 	*/
 
-	'key' => 'tXCceX8IRYpj2O9X0mezxXJUWp98ORiY',
+	'key' => 'U08A8VZehYkQafdhPJy0Px7CnZW3NF2c',
 
 	/*
 	|--------------------------------------------------------------------------

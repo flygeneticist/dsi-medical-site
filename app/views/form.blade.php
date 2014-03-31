@@ -61,6 +61,9 @@
                             if ($id != "" || $id != null)
                             {
                                 {{ Form::text('JobNumber', array('disabled')) }}
+                                /*  alternate idea:
+                                    echo "<p>".$apmform('JobNumber')."</p>"
+                                */
                             }
                             else 
                             {
