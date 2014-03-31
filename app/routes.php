@@ -26,3 +26,4 @@ Route::get('logout', array('uses' => 'LoginController@doLogout'));
 
 // SEND SEARCH REQUESTS TO SEARCH CONTROLLER
 Route::post('search', array('before' => 'csrf', 'uses' => 'SearchController@grabList'));
+Route::get('search/all', array('uses' => 'SearchController@grabAll'));

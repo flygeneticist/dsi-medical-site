@@ -2,8 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="text/javascript" href="jquery-1.11.0.min.js" />
     {{ HTML::style('bootstrap.css') }}
+    {{ HTML::script('jquery-1.11.0.min.js') }}
+    {{ HTML::script('jquery.validate.min.js') }}
+    {{ HTML::script('jquery-form-validator.js') }}
     <title>DSI Medical Services,Inc. Drug & Alcohol Program Management Services</title>
     </head>
 <body>
@@ -40,9 +42,9 @@
         <div class="gapdiv"></div>
 
         <div style="margin-bottom:20px;">
-            {{ Form::model($apmformdata, array('method' => 'POST', 'route' => array('form.update', $apmformdata -> id))) }}
+            {{ Form::model($apmformdata, array('id' => 'apm_form', 'method' => 'POST', 'route' => 'form.update')) }}
                 {{ Form::token() }}
-                <input name="id" type="hidden" value=""/>
+                {{ Form::hidden('id')}}
                 <div id="group1">
                     <div class="textborder form-group">
                         <h2>Basic Information</h2>

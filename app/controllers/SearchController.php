@@ -12,6 +12,16 @@ class SearchController extends BaseController {
 		$results = DB::table('apmforms')->select()
 					->where($category, $input)->orderby('APMTime', 'desc')->get();
 
-		return View::make('index', array('results' => $results));
+		return View::make('index') 
+			 ->with('results', $results);
+	}
+
+		public function grabAll()
+	{
+		// pull ALL results from the SQL database and store to a JSON var
+		$results = Apmform::all();
+
+		return View::make('index')
+			->with('results', $results);
 	}
 };

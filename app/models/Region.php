@@ -1,7 +1,7 @@
 <?php
 
-class Apmform extends Eloquent {
-	protected $table = 'apmforms';
+class Region extends Eloquent {
+	protected $table = 'regions';
 	public $timestamps = false;
 	
 	// Get the unique id for the form.
