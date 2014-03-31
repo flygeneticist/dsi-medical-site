@@ -44,7 +44,6 @@
         <div style="margin-bottom:20px;">
             {{ Form::model($apmformdata, array('id' => 'apm_form', 'method' => 'POST', 'route' => 'form.update')) }}
                 {{ Form::token() }}
-                {{ Form::hidden('id')}}
                 <div id="group1">
                     <div class="textborder form-group">
                         <h2>Basic Information</h2>
