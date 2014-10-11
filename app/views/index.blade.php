@@ -60,12 +60,13 @@
             <table id="resultsTable" class="table table-hover table-condensed table-responsive">
                <thead>
                   <tr>
-                     <th>Job Number</th>
-                     <th>APM Date</th>
-                     <th>Jobsite</th>
-                     <th>City</th>
-                     <th>State</th>
-                     <th>Link</th>
+                     <th class="col-sm-1">Job Number</th>
+                     <th class="col-sm-1">Request Date</th>
+                     <th class="col-sm-1">Number of Tests</th>
+                     <th class="col-sm-2">Jobsite</th>
+                     <th class="col-sm-1">City</th>
+                     <th class="col-sm-1">State</th>
+                     <th class="col-sm-1">Link</th>
                   </tr>
                </thead>
                <tbody>
@@ -75,6 +76,7 @@
                       <tr>
                         <td> {{{ $row->JobNumber }}} </td>
                         <td> {{{ $row->APMTime }}} </td>
+                        <td> {{{ $row->NumberOfTests }}} </td>
                         <td> {{{ $row->JobsiteName }}} </td>
                         <td> {{{ $row->JobsiteCity }}} </td>
                         <td> {{{ strtoupper($row->JobsiteState) }}} </td> 

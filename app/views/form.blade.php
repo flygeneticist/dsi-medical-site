@@ -55,8 +55,13 @@
                 <div id="group1">
                     <div class="textborder form-group">
                         <h2>APM Job Information</h2>
-                        {{ Form::label('APMTime', 'Date of APM:') }}
-                        {{ Form::text('APMTime', null, array('placeholder'=>'MM/DD/YYYY')) }}
+                        {{ Form::label('APMTime', 'Date of Request:') }}
+                        @if (($apmformdata->id) != "")
+                            {{ Form::hidden('APMTime', $apmformdata->APMTime) }}
+                            {{ $apmformdata->APMTime }}
+                        @else
+                            {{ Form::text('APMTime', date('m/d/Y'), array('placeholder'=>'MM/DD/YYYY')) }}
+                        @endif
                         {{ $errors->first('APMTime', '<span class="error">:message</span>') }}<br/>
 
                         {{ Form::label('JobNumber', 'Job Number (XXXXXX-XXX):') }}
@@ -154,7 +159,7 @@
                         {{ $errors->first('SecurityContact', '<span class="error">:message</span>') }}<br/>
           
                         {{ Form::label('GateSecurityContactNo', 'Security Contact Number:') }}
-                        {{ Form::text('GateSecurityContactNo') }}
+                        {{ Form::text('GateSecurityContactNo', null) }}
                         {{ $errors->first('GateSecurityContactNo', '<span class="error">:message</span>') }}<br/>
                     </div>
                 </div>
@@ -164,7 +169,6 @@
                     <div class="textborder form-group" id="group4">
                             <h2>Testing Schedule</h2>
                         <div>                        
-                            <h3>Primary Test Date</h3>
                             {{ Form::label('DatePrimeDay', 'Primary Test Date:') }}<br/>
                             {{ Form::text('DatePrimeDay', null, array('placeholder'=>'MM/DD/YYYY')) }}
                             {{ $errors->first('DatePrimeDay', '<span class="error">:message</span>') }}<br/>

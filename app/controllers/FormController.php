@@ -32,16 +32,17 @@ class FormController extends BaseController {
 		  	 // select all managers with in the region given by the JobNumber
 			$regionId = substr(Input::get('JobNumber'),0,3);
 			$jobNumber = Input::get('JobNumber');
+			$APMTime = Input::get('APMTime');
 			$id = Input::get('id');
-			$jobCheck = Apmform::where('JobNumber', $jobNumber)->get();
+			$jobCheck = Apmform::where('JobNumber', $jobNumber)->where('APMTime','=', $APMTime)->get();
 			$emptyCheck = Apmform::where('JobNumber', 'XXXXXXXXXXX')->get();
-			
+			 
 			if ( ($id == "" || $id == null) && $jobCheck != $emptyCheck )
 			{
 				// return user to the form page with their old form data passed in + error messages
 			        return Redirect::to('form')
 			        	->withInput()
-			        	->with('region_err','This Job Number already exists in the database!<br/>Please use a different number and resubmit!');
+			        	->with('region_err','Job Number / Request Date combination already exists in the database!<br/>Please use a different number and resubmit!');
 			}
 			else 
 			{
@@ -166,7 +167,6 @@ class FormController extends BaseController {
 					$apmform -> SecurityContact = Input::get('SecurityContact');
 			
 					$apmform -> DatePrimeDay = Input::get('DatePrimeDay');
-					$apmform -> DatePrimeNight = Input::get('DatePrimeNight');
 			
 					$apmform -> TimePrimeDay = Input::get('TimePrimeDay');
 					$apmform -> TimePrimeNight = Input::get('TimePrimeNight');
@@ -206,21 +206,22 @@ class FormController extends BaseController {
 					
 					$apmform -> GateSecurityContactNo = Input::get('GateSecurityContactNo');
 					$apmform -> NumberOfTestsNight = Input::get('NumberOfTestsNight');
-					$apmform -> NumberOfTestDay = Input::get('NumberOfTestsDay');
+					$apmform -> NumberOfTestsDay = Input::get('NumberOfTestsDay');
 
-					
+
 					try // try to save the new APM Form to the database
 					{
 						$apmform -> save(); //save the apmform to the DB
 					}
-					catch(\Exception $e) // catch the unique error resulting from a JobNumber being duplicated 
+					catch(Exception $e) // catch the unique error resulting from a JobNumber being duplicated 
 					{
 						// Rollback the database
 						DB::rollback();
 						// pass user back to the form view along with their Apmform data and an error to display
 						$apmformdata = $apmform;
 						return View::make('form')
-							->with('apmformdata', $apmformdata);
+							->with('apmformdata', $apmformdata)
+							->with('region_err', 'Error writing to the database!');
 					}		
 				    }
 				   	
@@ -261,9 +262,6 @@ class FormController extends BaseController {
 		$apmform -> SecurityContact = Input::get('SecurityContact');
 
 		$apmform -> DatePrimeDay = Input::get('DatePrimeDay');
-		$apmform -> DatePrimeNight = Input::get('DatePrimeNight');
-		$apmform -> DateAddDay = Input::get('DateAddDay');
-		$apmform -> DateAddNight = Input::get('DateAddNight');
 
 		$apmform -> TimePrimeDay = Input::get('TimePrimeDay');
 		$apmform -> TimePrimeNight = Input::get('TimePrimeNight');
@@ -303,7 +301,7 @@ class FormController extends BaseController {
 		
 		$apmform -> GateSecurityContactNo = Input::get('GateSecurityContactNo');
 		$apmform -> NumberOfTestsNight = Input::get('NumberOfTestsNight');
-		$apmform -> NumberOfTestDay = Input::get('NumberOfTestsDay');
+		$apmform -> NumberOfTestsDay = Input::get('NumberOfTestsDay');
 		
 		//route the user to the success page for form PDF creation and notification emailing
 		return Redirect::to('formSuccess/print')

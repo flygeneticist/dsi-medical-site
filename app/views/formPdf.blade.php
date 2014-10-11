@@ -130,7 +130,7 @@
             {{ Form::model($apmformdata, array('id' => 'apm_form', 'method' => 'POST', 'route' => 'form.update')) }}             
                 <div id="group1">
                     <div class="textborder form-group">
-                        <strong>{{ Form::label('APMTime', 'Date of APM:') }}&nbsp;&nbsp;</strong>
+                        <strong>{{ Form::label('APMTime', 'Date of Request:') }}&nbsp;&nbsp;</strong>
                         {{ $apmformdata->APMTime }}<br/>
 
                         <strong>{{ Form::label('JobNumber', 'Job Number:') }}&nbsp;&nbsp;</strong>
@@ -245,17 +245,7 @@
                         </div>
                         
                         <table border="0">
-			  <tr>
-			    <th></th>
-			    <th colspan="2"><h4><strong>Primary Test Date</strong></h4></th>
-			  </tr>
-			  <tr>
-			    <th></th>
-			    <th><strong>Day Shift</strong></th>
-			    <th><strong>Night Shift</strong></th>
-			    <th><strong>Day Shift</strong></th>
-			    <th><strong>Night Shift</strong></th>
-			  </tr>
+			  
 			  <tr>
 			    <td><strong>Test Date</strong></td>
 			    <td>
@@ -265,13 +255,11 @@
                     			<center>{{ $apmformdata->DatePrimeDay }}</center>
                     		@endif
 			    </td>
-			    <td>
-			    	@if ($apmformdata->DatePrimeDay == null || $apmformdata->DatePrimeDay == '01/01/1900')
-                        		&nbsp;
-                    		@else
-                    			<center>{{ $apmformdata->DatePrimeDay }}</center>
-                    		@endif
-			   </td>
+			  </tr>
+			  <tr>
+			    <th></th>
+			    <th><strong>Day Shift</strong></th>
+			    <th><strong>Night Shift</strong></th>
 			  </tr>
 			  <tr>
 			    <td><strong>Start Time</strong></td>
