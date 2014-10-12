@@ -53,7 +53,7 @@ class FormController extends BaseController {
 					// return user to the form page with their old form data passed in + error messages
 				        return Redirect::to('form/'.$id)
 				        	->withInput()
-				        	->with('region_err','First three(3) digits of the Job Number do not match with a region.<br/>Valid region codes are: 302, 303, 305, 306, 307');
+				        	->with('region_err','First three(3) digits of the Job Number do not match with a region.<br/>Valid region codes are: 302, 303, 305 307, 338');
 				}
 				else
 				{
