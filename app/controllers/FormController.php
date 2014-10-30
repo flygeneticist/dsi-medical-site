@@ -137,11 +137,15 @@ class FormController extends BaseController {
 					// get the id from the post input
 					$id = Input::get('id');
 					
+					// set an update vs create template trigger var 
+					$email_type = "new"; // default to new form
+					
 					// form has passed all validation checks!!
 					if ($id != "")
 					{
 						// grab the Apmform object based on the id passed
 						$apmform = Apmform::find($id);
+						$email_type = "old"; // update email type to old form template
 					}
 					else
 					{
@@ -149,6 +153,7 @@ class FormController extends BaseController {
 						$apmform = new Apmform;
 						// save the Job Number to the new form here since old forms will not need this option
 						$apmform -> JobNumber = Input::get('JobNumber');
+						
 					}
 					
 					// map the input data to the correct table fields
@@ -228,7 +233,8 @@ class FormController extends BaseController {
 			   	//route the user to the success page for form PDF creation and notification emailing
 				return Redirect::to('formSuccess/update')
 					->with('apmform', $apmform)
-					->with('managerInfo', $managerInfo);
+					->with('managerInfo', $managerInfo)
+					->with('email_type', $email_type);
 			}
 		}	
 	} 
