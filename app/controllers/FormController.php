@@ -213,7 +213,10 @@ class FormController extends BaseController {
 					$apmform -> NumberOfTestsNight = Input::get('NumberOfTestsNight');
 					$apmform -> NumberOfTestsDay = Input::get('NumberOfTestsDay');
 
-
+					$apmform -> ppeGlasses = Input::get('ppeGlasses');
+					$apmform -> ppeHat = Input::get('ppeHat');
+					$apmform -> ppeFootware = Input::get('ppeFootware');
+		
 					try // try to save the new APM Form to the database
 					{
 						$apmform -> save(); //save the apmform to the DB
@@ -308,6 +311,10 @@ class FormController extends BaseController {
 		$apmform -> GateSecurityContactNo = Input::get('GateSecurityContactNo');
 		$apmform -> NumberOfTestsNight = Input::get('NumberOfTestsNight');
 		$apmform -> NumberOfTestsDay = Input::get('NumberOfTestsDay');
+		
+		$apmform -> ppeGlasses = Input::get('ppeGlasses');
+		$apmform -> ppeHat = Input::get('ppeHat');
+		$apmform -> ppeFootware = Input::get('ppeFootware');
 		
 		//route the user to the success page for form PDF creation and notification emailing
 		return Redirect::to('formSuccess/print')

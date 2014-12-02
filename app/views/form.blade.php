@@ -205,6 +205,40 @@
 
                             </div>
                         </div>
+                        
+                        <div class="minigapdiv"></div>
+                        <div>
+                        	<h3 style="background-color: #AA3939;">PPE:</h3>
+                        	<p>
+                        	(Please check off all applicable).<br/>
+				Please make sure that this is <strong>absolutely</strong> necessary as it may limit our pool of med techs.<br/>
+				Med techs are aware they can ask to borrow hard hats and safety glasses from APM personnel if necessary to collect.
+				</p>
+				
+	                        @if ($apmformdata->ppeGlasses == 0)
+	                		{{ Form::checkbox('ppeGlasses', '1') }}
+	            		@else
+	            			{{ Form::checkbox('ppeGlasses', '1', true) }}
+	            		@endif
+                    		{{ Form::label('ppeGlasses', 'Safety Glasses') }}<br/>
+	                        
+	                       
+	                        @if ($apmformdata->ppeHat == 0)
+	                		{{ Form::checkbox('ppeHat', '1') }}
+	            		@else
+	            			{{ Form::checkbox('ppeHat', '1', true) }}
+	            		@endif
+	                       {{ Form::label('ppeHat', 'Hard Hat') }}<br/>
+
+				
+	                        @if ($apmformdata->ppeFootware == 0)
+	                		{{ Form::checkbox('ppeFootware', '1') }}
+	            		@else
+	            			{{ Form::checkbox('ppeFootware', '1', true) }}
+	            		@endif
+	                        {{ Form::label('ppeFootware', 'Protective Footware') }}<br/>
+                        </div>
+                        <div class="minigapdiv"></div>
                         <div class="minigapdiv"></div>
                         <div>   
                             {{ Form::label('comments', 'Comments:') }}<br/>
@@ -251,7 +285,7 @@
                 </div>
 
                 <div class="article">
-                    <h3 style="color:#d9534f";><u>Note:</u> Collectors MUST bring a photo ID and appropriate footware to all job sites!</h3>
+                    <h3 style="color:#d9534f";><u>Note:</u> Collectors MUST bring a photo ID and <strong>PROTECTIVE</strong> footwear to all job sites!</h3>
                 </div>
 
                     <div class="dsionly textborder form-group" id="group6">
